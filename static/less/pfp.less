@@ -1,0 +1,252 @@
+/*!
+ * Bootstrap v3.0.0
+ *
+ * Copyright 2013 Twitter, Inc
+ * Licensed under the Apache License v2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Designed and built with all the love in the world by @mdo and @fat.
+ */
+
+// Core variables and mixins
+@import "bootstrap/variables.less";
+@import "bootstrap/mixins.less";
+
+// Reset
+@import "bootstrap/normalize.less";
+@import "bootstrap/print.less";
+
+// Core CSS
+@import "bootstrap/scaffolding.less";
+@import "bootstrap/type.less";
+@import "bootstrap/code.less";
+@import "bootstrap/grid.less";
+@import "bootstrap/tables.less";
+@import "bootstrap/forms.less";
+@import "bootstrap/buttons.less";
+
+// Components
+@import "bootstrap/component-animations.less";
+@import "bootstrap/glyphicons.less";
+@import "bootstrap/dropdowns.less";
+@import "bootstrap/button-groups.less";
+@import "bootstrap/input-groups.less";
+@import "bootstrap/navs.less";
+@import "bootstrap/navbar.less";
+@import "bootstrap/breadcrumbs.less";
+@import "bootstrap/pagination.less";
+@import "bootstrap/pager.less";
+@import "bootstrap/labels.less";
+@import "bootstrap/badges.less";
+@import "bootstrap/jumbotron.less";
+@import "bootstrap/thumbnails.less";
+@import "bootstrap/alerts.less";
+@import "bootstrap/progress-bars.less";
+@import "bootstrap/media.less";
+@import "bootstrap/list-group.less";
+@import "bootstrap/panels.less";
+@import "bootstrap/wells.less";
+@import "bootstrap/close.less";
+
+// Components w/ JavaScript
+@import "bootstrap/modals.less";
+@import "bootstrap/tooltip.less";
+@import "bootstrap/popovers.less";
+@import "bootstrap/carousel.less";
+
+// Utility classes
+@import "bootstrap/utilities.less";
+@import "bootstrap/responsive-utilities.less";
+
+body{
+  margin-bottom: 50px;
+  color: @brand-primary;
+}
+.btn-secondary{
+  background-color: @brand-secondary;
+  color: white;
+  &:hover{
+    background-color: darken(@brand-secondary, 10%);
+    color: white;
+  }
+}
+.containerPFP{
+  margin-top: 50px;
+}
+
+// PFP styles
+.navbar-inverse{
+  color: @brand-secondary;
+  background-color: @brand-primary;
+  border-bottom: 1px solid @brand-tertiary;
+  .navbar-brand{
+    color: @brand-secondary;
+    padding: 0px;
+  }
+  .navbar-nav{
+    li{
+      a{
+        margin-left: 0px;
+        margin-right: 0px;
+        padding-right: 5px;
+        padding-left: 5px;
+        color: @brand-secondary;
+        font-size: 22px;
+        .caret{
+          border-top-color: @brand-secondary !important;
+          border-bottom-color: @brand-secondary !important;
+        }
+      }
+    }
+    .dropdown-menu{
+      background-color: @brand-tertiary;
+      text-align: center;
+      right: initial;
+      a{
+        color: white;
+      }
+      li{
+        a{
+          &:hover{
+            background-color: transparent;
+            color: @brand-primary;
+          }
+        }
+      }
+    }
+  }
+  .navbar-nav > .open > a:focus{
+    background-color: @brand-tertiary;
+    .caret{
+      border-top-color: white !important;
+      border-bottom-color: white !important; 
+    }
+  }
+}
+
+.jumbotron{
+  background-color: @brand-primary;
+  color: @brand-tertiary;
+  position: relative;
+  min-height: 450px;
+  h1{
+    font-size: 55px;
+    color: @brand-secondary;
+  }
+  hr{
+    height: 1.5px;
+    border: 0;
+    background-color: @brand-secondary;
+    margin-top: 0px;
+  }
+  .jumbotron-img{
+    position: absolute;
+    right: 150px;
+    bottom: -325px;
+  }
+
+  .jumbotron-text{
+    margin-top: 40px;
+    h2{
+      color: @brand-primary;
+    }
+    p{
+      color: white;
+    }
+    .motto{
+      font-size: 27px;
+    }
+    .blurb{
+      font-size: 18px;
+      padding: 0px;
+      li{
+        line-height: 25px;
+        color: white;
+        list-style: none;
+      }
+    }
+  }
+}
+p{
+  color: @brand-primary;
+}
+
+.contentFirst{
+
+}
+
+.content{
+  hr{
+    height: 1px;
+    border: 0;
+    background-color: @brand-primary;
+    margin-top: 0px;
+    width: 80%;
+    margin-left: 0px;
+  }
+}
+
+@media (max-width: @screen-md-max){
+  .jumbotron-img{
+    left: 50%;
+    margin-left: -325px;
+  }
+  .jumbotron-text{
+    h1{
+      text-align: center;
+    }
+    margin-bottom: 325px;
+    width: 100%;
+  }
+  .contentFirst{
+    margin-top: 325px;
+    .col-sm-6{
+      width: 100%;
+    }
+  }
+}
+
+@media (max-width: @screen-xs-max){
+  .jumbotron{
+    .jumbotron-text{
+      margin-bottom: 250px;
+      width: 100%;
+    }
+    .jumbotron-img{
+      left: 50%;
+      margin-left: -250px;
+      bottom: -250px;
+      img{
+        width: 500px;
+        height: 500px;
+      }
+    }
+  }
+  .contentFirst{
+    margin-top: 250px;
+  }
+}
+
+.modal-header{
+  background-color: @brand-primary;
+  color: @brand-secondary;
+  .close{
+    margin-top: 12px;
+    color: white;
+    opacity: 1;
+    font-size: 18px;
+    &:hover{
+      color: @brand-tertiary;
+      opacity: 1;
+    }
+  }
+}
+#repairs{
+  .btn-lg{
+    width: 200px;
+    margin-bottom: 5px;
+  }
+}
+.modal-footer{
+  background-color: @brand-primary;
+}

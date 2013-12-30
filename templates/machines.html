@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block title %}PFP | Machines{% endblock %}
+
+{% block content %}
+    <div id ="repairs"class="container containerPFP">
+      <div class="title">
+        <h1>Machines on Location</h1>
+      </div>
+      <div class="col-md-12">
+        <button id="assignBtn" class="btn btn-primary btn-lg" type="button" data-toggle="modal" data-target="#moveMachine">Assign a Machine</button><br>
+        <button id="addMachBtn" class="btn btn-primary btn-lg" type="button" data-toggle="modal" data-target="#addMachine">Add Machine</button><br>
+        <button id="addLocBtn" class="btn btn-primary btn-lg" type="button" data-toggle="modal" data-target="#addLocation">Add Location</button><br>
+      </div>
+      <div class="col-md-12">
+        {% for machine in machines %}
+            <h3 data-id="{{ machine.id }}">
+                <span class="name">{{ machine.name }}&nbsp;</span>
+                <span class="mfu">{{ machine.manufacturer }}&nbsp;</span>
+                <span class="mfd">{{ machine.yearMfd }}</span>
+            </h3>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="modal fade" id="addMachine" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h2 class="modal-title">Add a Machine</h2>
+          </div>
+          <div class="modal-body container col-sm-12">
+            <label for="machName" class="control-label">Name:</label>
+            <input type="text" class="form-control" id="machName">
+            <label for="manufacturer" class="control-label">Manufacturer:</label>
+            <input type="text" class="form-control" id="manufacturer">
+            <label for="year" class="control-label">Year:</label>
+            <input type="text" class="form-control" id="year">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" id="addMach">Add Machine</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <div class="modal fade" id="addLocation" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h2 class="modal-title">Add a Location</h2>
+          </div>
+          <div class="modal-body container col-sm-12">
+            <label for="locName" class="control-label">Name:</label>
+            <input type="text" class="form-control" id="locName">
+            <label for="locAddress" class="control-label">Address:</label>
+            <input type="text" class="form-control" id="locAddress">
+            <label for="locPhone" class="control-label">Phone #:</label>
+            <input type="text" class="form-control" id="locPhone">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" id="addLoc">Add Location</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <div class="modal fade" id="moveMachine" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h2 class="modal-title">Assign a Machine</h2>
+          </div>
+          <div class="modal-body container col-sm-12">
+            <div class="col-sm-6">
+              <div class="btn-group" id="locDD">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                  <span class="selected">Choose Location</span>&nbsp;<span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                  {% for location in locations %}
+                    <li><a href="#" data-locID="{{ location.id }}"> {{ location.name }}</a></li>
+                  {% endfor %}
+                </ul>
+              </div>
+            </div>
+            <div class="col-sm-6" id="machList">
+            {% for machine in machines %}
+              <input type="checkbox" name="machine" value="{{ machine.id }}">{{ machine.name }}<br>
+            {% endfor %}
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" id="assignMach">Assign to Location</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+{% endblock %}
