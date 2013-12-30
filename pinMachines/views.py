@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from pinMachines.models import *
 import json
+from datetime import datetime
 
 def ajaxAddMachine(request):
     
@@ -24,8 +25,17 @@ def ajaxAddMachine(request):
 
     # create a new Machine
     try:
+        # Add the machine
         mach = Machine(name = name, manufacturer = mfu, yearMfd = year)
         mach.save()
+
+        # auto assign it to the unassigned location
+        
+        # grab the unassigned location
+        location = Location.objects.get(id = 1)
+        assign = OnLocation(location = location, machine = mach)
+        assign.save()
+        
         response = 'Success'
     except:
         response = 'ERRORORREORRROERROR'
@@ -65,25 +75,34 @@ def ajaxAddLocation(request):
 def ajaxAssignMachine(request):
     
     # init variables
-    locID = ''
-    machines = list
-
+    location = ''
+    machine = ''
+    machines = []
     response = ''
 
     # grab the variables from the request
     if request.GET.has_key('locID') and request.GET['locID'] != '':
-        locID = request.GET['locID']
+        location = Location.objects.get(id = request.GET['locID'])
 
-    if request.GET.has_key('machines') and request.GET['machines'] != '':
-        machines = request.GET['machines']
+    if request.GET.has_key('machines[]') and len(request.GET.getlist('machines[]')) != 0:
+        machines = request.GET.getlist('machines[]')
 
-    # assign the games to the location
-    try:
-        loc = Location(name = name, address = address, phoneNum = phone)
-        loc.save()
-        response = 'Success'
-    except:
-        response = 'ERRORORREORRROERROR'
+    # assign the games to the location   
+    for machID in machines:
+        machine = Machine.objects.get( id = machID)
+        try:
+            # if it fails then it already exists and needs to be updated not created Could probably clean this up a good deal
+            try:
+                assign = OnLocation(location = location, machine = machine)
+                assign.save()
+            except:
+                # this means its already onlocation even if just unassigned
+                update = OnLocation.objects.get( machine = machine )
+                update.location = location
+                update.save()
+            response = 'Success'
+        except:
+            response = 'ERRORORREORRROERROR'
 
 
     return HttpResponse( json.dumps(response), mimetype="application/json")

@@ -70,6 +70,8 @@ $('#assignMach').click( function() {
     var machines = [];
     $('#machList :checked').each( function() {
         machines.push($(this).attr('value'));
+        // Remove the dom element
+        $(this).parent().remove();
     });
 
 
@@ -80,7 +82,8 @@ $('#assignMach').click( function() {
             locID: location,
             machines: machines,
         },
-    }).done(function(){
-        alert('shit added yo');
+    }).done(function( response ){
+        alert( response );
     });
+
 });

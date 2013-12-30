@@ -12,15 +12,6 @@
         <button id="addMachBtn" class="btn btn-primary btn-lg" type="button" data-toggle="modal" data-target="#addMachine">Add Machine</button><br>
         <button id="addLocBtn" class="btn btn-primary btn-lg" type="button" data-toggle="modal" data-target="#addLocation">Add Location</button><br>
       </div>
-      <div class="col-md-12">
-        {% for machine in machines %}
-            <h3 data-id="{{ machine.id }}">
-                <span class="name">{{ machine.name }}&nbsp;</span>
-                <span class="mfu">{{ machine.manufacturer }}&nbsp;</span>
-                <span class="mfd">{{ machine.yearMfd }}</span>
-            </h3>
-        {% endfor %}
-      </div>
     </div>
 
     <div class="modal fade" id="addMachine" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -88,8 +79,10 @@
               </div>
             </div>
             <div class="col-sm-6" id="machList">
-            {% for machine in machines %}
-              <input type="checkbox" name="machine" value="{{ machine.id }}">{{ machine.name }}<br>
+            {% for machine in unassigned %}
+              <span class="unassignedMachine">
+                <input type="checkbox" name="machine" value="{{ machine.id }}">{{ machine.name }}<br>
+              </span>
             {% endfor %}
             </div>
           </div>

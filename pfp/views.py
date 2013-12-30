@@ -14,12 +14,21 @@ def machinesPage(request):
 
     machines = Machine.objects.all()
     locations = Location.objects.all()
+
+    # unassigned location id = 1, grab just the unassigned machines
+    unassigned = OnLocation.objects.filter( location = 1)
+    unasMachines = list()
+
+    
+    for mach in unassigned:
+        unasMachines.append(Machine.objects.get( id = mach.machine.id ))
     
     return render(
         request, 
         'machines.html',
         {
             'machines': machines,
+            'unassigned': unasMachines,
             'locations': locations
         }
     )

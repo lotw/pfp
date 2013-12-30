@@ -37,6 +37,9 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'pinMachines',
+    'tournaments',
+    'player',
+    'scores',
     #'debug_toolbar',
 )
 
