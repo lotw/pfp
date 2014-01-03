@@ -5,9 +5,25 @@
 {% block content %}
     <div id ="repairs"class="container containerPFP">
       <div class="title">
-        <h1>Machines on Location</h1>
+        <h1>Select a Location</h1>
       </div>
       <div class="col-md-12">
+        <div class="btn-group" id="viewLocDD">
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+            <span class="selected">Choose Location</span>&nbsp;<span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" role="menu">
+            {% for location in locations %}
+              <li><a href="#" data-locID="{{ location.id }}"> {{ location.name }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+        <button class="btn btn-primary btn-lg">View Location</button>
+      </div>
+      <div class="title invisible">
+        <h1>Testing</h1>
+      </div>
+      <div class="col-md-12 invisible">
         <button id="assignBtn" class="btn btn-primary btn-lg" type="button" data-toggle="modal" data-target="#moveMachine">Assign a Machine</button><br>
         <button id="addMachBtn" class="btn btn-primary btn-lg" type="button" data-toggle="modal" data-target="#addMachine">Add Machine</button><br>
         <button id="addLocBtn" class="btn btn-primary btn-lg" type="button" data-toggle="modal" data-target="#addLocation">Add Location</button><br>

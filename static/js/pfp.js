@@ -16,12 +16,12 @@ $('#addLocBtn').click( function() {
     $('#addLocation').modal('show');
 });
 
-$('#locDD li a').click( function() {
+$('#viewLocDD li a').click( function() {
     var location = $(this).html();
     var locID = $(this).attr('data-locID');
 
-    $('#locDD .selected').attr('data-locID', locID);
-    $('#locDD .selected').html( location );
+    $('#viewLocDD .selected').attr('data-locID', locID);
+    $('#viewLocDD .selected').html( location );
 });
 
 // click function to add a machine
